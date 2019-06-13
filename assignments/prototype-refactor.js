@@ -56,38 +56,43 @@ class Humanoid extends CharacterStats { // (Having an appearance or character re
     }
 }
     
-  function Villain(attributes) {
-    Humanoid.call(this, attributes);
+class Villain extends Humanoid {
+    constructor(villainAttributes) {
+        super(villainAttributes);
+    }
+    slash(hero) {
+        hero.healthPoints = hero.healthPoints - 1;
+        if (hero.healthPoints === 0) {
+            return `${this.name} kills ${hero.name}`;
+          } else if (hero.healthPoints < 0) {
+            return `${this.name} is kicking ${hero.name}'s corpse!`
+          } else {
+          return `${this.name} slashes ${hero.name} for one point of damge. ${hero.name} now has ${hero.healthPoints} hp`;
+          }
+
+    }
   }
-  
-  Villain.prototype = Object.create(Humanoid.prototype);
-  Villain.prototype.slash = function(hero) {
-    hero.healthPoints = hero.healthPoints - 1;
-    if (hero.healthPoints === 0) {
-      return `${this.name} kills ${hero.name}`;
-    } else if (hero.healthPoints < 0) {
-      return `${this.name} is kicking ${hero.name}'s corpse!`
-    } else {
-    return `${this.name} slashes ${hero.name} for one point of damge. ${hero.name} now has ${hero.healthPoints} hp`;
+
+
+  class Hero extends Humanoid {
+    constructor(heroAttributes) {
+        super(heroAttributes);
+    }
+    slash(villain) {
+        villain.healthPoints = villain.healthPoints - 1;
+        if (villain.healthPoints === 0) {
+            return `${this.name} kills ${villain.name}`;
+          } else if (villain.healthPoints < 0) {
+            return `${this.name} is kicking ${villain.name}'s corpse!`
+          } else {
+          return `${this.name} slashes ${villain.name} for one point of damge. ${villain.name} now has ${villain.healthPoints} hp`;
+          }
+
     }
   }
   
-  function Hero(attributes) {
-    Humanoid.call(this, attributes);
-  }
-  
-  Hero.prototype = Object.create(Humanoid.prototype);
-  Hero.prototype.slash = function(villain) {
-    villain.healthPoints = villain.healthPoints - 1;
-  
-    if (villain.healthPoints === 0) {
-      return `${this.name} kills ${villain.name}`;
-    } else if (villain.healthPoints < 0) {
-      return `${this.name} is kicking ${villain.name}'s corpse!`
-    } else {
-    return `${this.name} slashes ${villain.name} for one point of damage. ${villain.name} now has ${villain.healthPoints} hp`;
-    }
-  }
+
+
   
   // Test you work by un-commenting these 3 objects and the list of console logs below:
   
