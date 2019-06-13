@@ -20,29 +20,29 @@
 
 
 
-function GameObject(attributes) {
+class GameObject {
+    constructor(attributes) {
+        this.createdAt = new Date();
+        this.dimensions = attributes.dimensions;
+        this.name = attributes.name;
+    }
+    destroy() {
+        return `${this.name} was removed from the game.`;
+    }
+}
+class CharacterStats extends GameObject {
+    constructor(characterStatsAttributes) {
+        super(characterStatsAttributes);
+        this.healthPoints = characterStatsAttributes.healthPoints;
+    }
 
-    this.createdAt = new Date();
-    this.dimensions = attributes.dimensions;
-    this.name = attributes.name;
+    takeDamage() {
+        return `${this.name} took damage.`
+    }
+
+}
   
-  }
-  
-  GameObject.prototype.destroy = function() {
-    return `${this.name} was removed from the game.`
-  }
-  function CharacterStats(attributes) {
-    GameObject.call(this, attributes);
-    this.healthPoints = attributes.healthPoints;
-    console.log(this)
-  }
-  
-  CharacterStats.prototype = Object.create(GameObject.prototype);
-  
-  CharacterStats.prototype.takeDamage = function() {
-    return `${this.name} took damage.`
-  
-  }
+
   
   function Humanoid(attributes) { // (Having an appearance or character resembling that of a human.) ===
     CharacterStats.call(this, attributes);
