@@ -1,23 +1,12 @@
-// // CODE here for your Lambda Classes
-// * We have a school to build here! This project will get you used to thinking about classes in JavaScript and building them from a brand new data set.
-// * Lambda personnel can be broken down into three different types of `people`.
-//   * **Instructors** - extensions of Person
-//   * **Students** - extensions of Person
-//   * **Project Managers** - extensions of Instructors
-// * **IMPORTANT** - You'll need to create 2 - 3 objects for each class and test them according to their unique Attributes. For example:
-
-// ```js
-// const fred = new Instructor({
-//   name: 'Fred',
-//   location: 'Bedrock',
-//   age: 37,
-//   favLanguage: 'JavaScript',
-//   specialty: 'Front-end',
-//   catchPhrase: `Don't forget the homies`
-// });
-// ```
 
 
+
+// borrowed from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
 
 class Person {
     constructor(attributes) {
@@ -45,6 +34,16 @@ class Instructor extends Person {
     grade(student, subject) {
         return `${student.name} receives a perfect score on ${subject}`;
     }
+
+    giveActualGrade(student) {
+        return `${student.name} is getting a ${student.grade} at Lambda School`;
+    }
+    mark(student) {
+        let randomMark = getRandomInt(-10, 11);
+        student.grade+= randomMark;
+        return `${student.name} was marked ${randomMark} points. ${student.name}'s grade is now ${student.grade}`
+    }
+
 }
 
 
@@ -54,6 +53,7 @@ class Student extends Person {
         this.previousBackground = studentAttributes.previousBackground;
         this.className = studentAttributes.className;
         this.favSubjects = studentAttributes.favSubjects;
+        this.grade = studentAttributes.grade;
     }
     listsSubjects() {
         return `${this.favSubjects}`;
@@ -105,6 +105,7 @@ const matthew = new Instructor({
     location: 'Florida',
     previousBackground: 'High School last month',
     className: 'Web21',
+    grade: 100,
     favSubjects: ['Html', 'CSS', 'JavaScript'],
 });
     const kevin = new Student({
@@ -113,6 +114,7 @@ const matthew = new Instructor({
     location: "California",
     previousBackground: "Table Games Dealer",
     className: "WEB21",
+    grade: 95,
     favSubjects: ['Html', 'CSS', 'JavaScript'],
 });
     const nisa = new Student({
@@ -121,6 +123,7 @@ const matthew = new Instructor({
     location: 'Ohio',
     previousBackground: 'Debt Collector',
     className: 'Web21',
+    grade: 100,
     favSubjects: ['Html', 'CSS', 'JavaScript'],
 });
 
@@ -130,6 +133,7 @@ const matthew = new Instructor({
     location: "California",
     previousBackground: "English teacher",
     className: 'Web21',
+    grade: 91,
     favSubjects: ["Computer Science", "Philosophy", "English"],
 });
 
@@ -219,4 +223,21 @@ console.log(joscelyn.listsSubjects())// Computer Science,Philosophy,English
 console.log(isaiah.sprintChallenge('prototypical inheritance'));// Isaiah has begun sprint challenge on prototypical inheritance
 console.log(pat.catchPhrase);//Lets google that together
 console.log(mary.debugsCode(joscelyn, 'CSS'));// Mary debugs Joscelyn's code on CSS
-console.log(dan.grade(joscelyn, 'JavaScript'));//Joscelyn receives a perfect score on JavaScript
+console.log(dan.grade(joscelyn, 'JavaScript'));// Joscelyn receives a perfect score on JavaScript
+console.log(dan.giveActualGrade(joscelyn));
+console.log(dan.mark(joscelyn));
+console.log(dan.mark(joscelyn));
+console.log(dan.mark(joscelyn));
+console.log(dan.mark(joscelyn));
+console.log(dan.mark(joscelyn));
+console.log(dan.mark(joscelyn));
+console.log(dan.mark(joscelyn));
+console.log(dan.mark(joscelyn));
+console.log(dan.mark(joscelyn));
+console.log(dan.mark(joscelyn));
+console.log(dan.mark(joscelyn));
+console.log(dan.mark(joscelyn));
+console.log(dan.mark(joscelyn));
+
+
+
