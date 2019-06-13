@@ -37,27 +37,25 @@ class CharacterStats extends GameObject {
     }
 
     takeDamage() {
-        return `${this.name} took damage.`
+        return `${this.name} took damage.`;
     }
 
 }
   
 
   
-  function Humanoid(attributes) { // (Having an appearance or character resembling that of a human.) ===
-    CharacterStats.call(this, attributes);
-  
-    this.team = attributes.team;
-    this.weapons = attributes.weapons;
-    this.language = attributes.language;
-  
-  }
-  
-  Humanoid.prototype = Object.create(CharacterStats.prototype);
-  Humanoid.prototype.greet = function() {
-    return `${this.name} offers a greeting in ${this.language}`
-  };
-  
+class Humanoid extends CharacterStats { // (Having an appearance or character resembling that of a human.) ===
+    constructor(humanoidAttributes) {
+        super(humanoidAttributes);
+        this.team = humanoidAttributes.team;
+        this.weapons = humanoidAttributes.weapons;
+        this.language = humanoidAttributes.language;
+    }
+    greet() {
+        return `${this.name} offers a greeting in ${this.language}`;
+    }
+}
+    
   function Villain(attributes) {
     Humanoid.call(this, attributes);
   }
