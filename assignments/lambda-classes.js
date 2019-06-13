@@ -56,13 +56,22 @@ class Student extends Person {
         this.grade = studentAttributes.grade;
     }
     listsSubjects() {
-        return `${this.favSubjects}`;
+        let endString = '';
+        for (let i = 0; i < this.favSubjects.length; i++) {
+            endString += this.favSubjects[i] + ' ';
+        }
+        return endString;
     }
     PRAssignment(subject) {
         return `${this.name} has submitted a PR for ${subject}`;
     }
     sprintChallenge(subject) {
         return `${this.name} has begun sprint challenge on ${subject}`;
+    }
+    graduate() {
+        if (this.grade >= 70) {
+            return `${this.name} has graduated!`
+        } else return `${this.name}'s grade is too low. They need to do more work before they can graduate`
     }
 }
 
@@ -238,6 +247,8 @@ console.log(dan.mark(joscelyn));
 console.log(dan.mark(joscelyn));
 console.log(dan.mark(joscelyn));
 console.log(dan.mark(joscelyn));
+console.log(joscelyn.graduate());
+
 
 
 
